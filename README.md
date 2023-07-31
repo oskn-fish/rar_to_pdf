@@ -10,7 +10,12 @@ pip install img2pdf patool
 brew install rar
 ```
 
+# Installation
+```
+pip install -e .
+```
+
 # Usage
 ```
-python rar_to_pdf.py <path-to-rar-file>
+rar_to_pdf <path-to-rar-file>
 ```

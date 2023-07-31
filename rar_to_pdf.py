@@ -63,6 +63,6 @@ def get_args():
     args = parser.parse_args()
     return args
 
-if __name__ == "__main__":
+def main():
     args = get_args()
     GeneratePdfFolder(args.rar_path, args.output_path).generate_pdf_folder()
