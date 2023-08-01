@@ -31,7 +31,7 @@ class GeneratePdfFolder():
         self._recursive_img2pdf(self.output_path)
 
     def _recursive_img2pdf(self, path):
-        images_path = glob.glob(glob.escape(path)+"/*.jpg")+glob.glob(glob.escape(path)+"/*.png")
+        images_path = glob.glob(glob.escape(path)+"/*.jpg")+glob.glob(glob.escape(path)+"/*.JPG")+glob.glob(glob.escape(path)+"/*.png")+glob.glob(glob.escape(path)+"/*.PNG")
         
         if images_path:
             images_path.sort()
