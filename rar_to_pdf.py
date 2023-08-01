@@ -47,7 +47,7 @@ class GeneratePdfFolder():
                     
             if not skip:                
                 file_path = self.output_path+"/"+os.path.basename(path)+".pdf"
-                logger.debug(f"saving to {file_path}.pdf ...")
+                logger.debug(f"saving to {file_path} ...")
                 with open(file_path, mode='wb') as f:
                     f.write(img2pdf.convert(images_path))
         
