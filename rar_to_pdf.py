@@ -80,9 +80,9 @@ class GeneratePdfFolder():
                 return 
         
         # convert webp files to jpg files
+        to_be_deleted_path = []
         if images_path_webp:
             print("converting to jpg files...")
-            to_be_deleted_path = []
             for image_webp_path in images_path_webp:
                 image_ect = Image.open(image_webp_path)
                 new_image_jpg_path = os.path.join(os.path.splitext(image_webp_path)[0]+".jpg")
