@@ -17,7 +17,10 @@ class GeneratePdfFolder():
     def __init__(self, input_path, output_path):
         # setting default output path
         if not output_path:
-            output_path = os.path.splitext(input_path)[0]
+            if os.path.isfile(input_path):
+                output_path = os.path.splitext(input_path)[0]
+            else:
+                output_path = input_path
         self.output_path = output_path
         
         # making a directory if input is a rar file
@@ -99,9 +102,10 @@ class GeneratePdfFolder():
             for to_delete in to_be_deleted_path:
                 os.remove(to_delete)
         
+        children = [child for child in glob.glob(glob.escape(pwd)) if os.path.isdir(child)]
         # search in child directories
-        for child in os.listdir(pwd):
-            child_path = os.path.join(pwd, child)
+        for child_path in children:
+            # child_path = os.path.join(pwd, child)
             if os.path.isdir(child_path):
                 self.generate_pdf_folder(child_path)
 
@@ -115,3 +119,7 @@ def get_args():
 def main():
     args = get_args()
     GeneratePdfFolder(args.input_path, args.output_path).generate_pdf_folder()
+
+
+if __name__ == "__main__":
+    GeneratePdfFolder("/Volumes/Data/tmp/GAMEOVERS-FILE1.1+2.0", None).generate_pdf_folder()
