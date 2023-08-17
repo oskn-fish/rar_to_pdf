@@ -119,7 +119,3 @@ def get_args():
 def main():
     args = get_args()
     GeneratePdfFolder(args.input_path, args.output_path).generate_pdf_folder()
-
-
-if __name__ == "__main__":
-    GeneratePdfFolder("/Volumes/Data/tmp/GAMEOVERS-FILE1.1+2.0", None).generate_pdf_folder()
