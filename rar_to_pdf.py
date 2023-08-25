@@ -40,7 +40,7 @@ class GeneratePdfFolder():
         if os.path.isfile(new_pdf_path):
             ans = ''
             while ans not in ['y', 'n']:
-                ans = input(f"'{new_pdf_path}.pdf' already exists. Do you want to overwrite? (y[Yes]/n[No])")
+                ans = input(f"'{new_pdf_path}' already exists. Do you want to overwrite? (y[Yes]/n[No])")
                 ans = ans.lower()
             if ans == 'n':
                 skip = True
@@ -102,10 +102,9 @@ class GeneratePdfFolder():
             for to_delete in to_be_deleted_path:
                 os.remove(to_delete)
         
-        children = [child for child in glob.glob(glob.escape(pwd)) if os.path.isdir(child)]
+        children = [child for child in glob.glob(glob.escape(os.path.join(pwd,"*"))) if os.path.isdir(child)]
         # search in child directories
         for child_path in children:
-            # child_path = os.path.join(pwd, child)
             if os.path.isdir(child_path):
                 self.generate_pdf_folder(child_path)
 
@@ -119,3 +118,7 @@ def get_args():
 def main():
     args = get_args()
     GeneratePdfFolder(args.input_path, args.output_path).generate_pdf_folder()
+
+
+if __name__ == "__main__":
+    pass
