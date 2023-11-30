@@ -24,8 +24,8 @@ class GeneratePdfFolder():
         self.output_path = output_path
         
         # making a directory if input is a rar file
-        if not os.path.isdir(input_path):
-            os.mkdir(self.output_path)
+        if not os.path.isdir(self.output_path):
+            os.mkdir(os.path.splitext(self.output_path)[0])
             patoolib.extract_archive(input_path, outdir=output_path)
             
             
@@ -101,8 +101,10 @@ class GeneratePdfFolder():
             print("removing temporary files...")
             for to_delete in to_be_deleted_path:
                 os.remove(to_delete)
-        
-        children = [child for child in glob.glob(glob.escape(os.path.join(pwd,"*"))) if os.path.isdir(child)]
+        # 
+        # children = [child for child in glob.glob(glob.escape(os.path.join(pwd,"*"))) if os.path.isdir(child)]
+        children = [child for child in glob.glob(os.path.join(pwd,"*")) if os.path.isdir(child)]
+        # children = []
         # search in child directories
         for child_path in children:
             if os.path.isdir(child_path):
@@ -121,4 +123,5 @@ def main():
 
 
 if __name__ == "__main__":
-    pass
+    args = get_args()
+    GeneratePdfFolder(args.input_path, args.output_path).generate_pdf_folder()
